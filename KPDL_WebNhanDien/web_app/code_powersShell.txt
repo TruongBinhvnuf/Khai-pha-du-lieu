@@ -1,0 +1,4 @@
+cd C:\Users\truon\Desktop\KPDL_WebNhanDien\web_app
+C:\Users\truon\yolov8_env\Scripts\Activate.ps1  
+pip install flask opencv-python ultralytics wikipedia
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSITE nhận diện hình ảnh</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { display: flex; justify-content: center; align-items: flex-start; margin-top: 20px; }
+        .left, .right { flex: 1; padding: 20px; }
+        .left img { width: 100%; border: 2px solid #ddd; border-radius: 5px; }
+        iframe { width: 100%; height: 400px; border: none; }
+    </style>
+</head>
+<body>
+    <h2>🌸 WEBSITE nhận diện hình ảnh 🌸</h2>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Nhận Diện</button>
+    </form>
+
+    {% if result %}
+    <div class="container">
+        <!-- Bên trái: Hiển thị ảnh nhận diện -->
+        <div class="left">
+            <h3>📷 Kết quả nhận diện:</h3>
+            <img src="{{ url_for('static', filename='output.jpg') }}" alt="Kết quả nhận diện">
+        </div>
+
+        <!-- Bên phải: Thông tin cây -->
+        <div class="right">
+            <h3>📖 Thông tin về cây</h3>
+            <p><b>🌿 Loại cây:</b> {{ detected_label }}</p>
+            <p>{{ description }}</p>
+
+            {% if wiki_url %}
+            <h4>📚 Thông tin chi tiết</h4>
+            <iframe src="{{ wiki_url }}"></iframe>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
